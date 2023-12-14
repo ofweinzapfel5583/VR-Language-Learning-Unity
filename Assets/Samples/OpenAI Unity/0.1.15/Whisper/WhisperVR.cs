@@ -54,7 +54,7 @@ namespace OpenAI
 //Microphone.devices as an integer will always have to be checked for different devices
 
 #if !UNITY_WEBGL
-            clip = Microphone.Start(Microphone.devices[2].ToString(), false, duration, 44100);
+            clip = Microphone.Start(Microphone.devices[0].ToString(), false, duration, 44100);
 #endif
         }
 
