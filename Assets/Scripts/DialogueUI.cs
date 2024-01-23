@@ -6,14 +6,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Dialogue;
+using TMPro;
 
 namespace UIElements
 {
 
     public class DialogueUI : MonoBehaviour
     {
-        [SerializeField] private Text npcNameText;
-        [SerializeField] private Text sentenceText;
+        [SerializeField] private TextMeshProUGUI npcNameText;
+        [SerializeField] private TextMeshProUGUI sentenceText;
 
         private Button[] _buttons;
         private Queue<string> _sentences;
