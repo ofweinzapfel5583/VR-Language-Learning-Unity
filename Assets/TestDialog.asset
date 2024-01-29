@@ -24,7 +24,7 @@ MonoBehaviour:
   DialogueUnits:
   - requiredStateKey: a
     sentences:
-    - Select your response!
+    - '"Hallo, was mochtest du?"'
     options:
     - buttonText: '"I would like coffee, please."'
       actionTrigger:
@@ -54,11 +54,40 @@ MonoBehaviour:
               m_StringArgument: a
               m_BoolArgument: 0
             m_CallState: 2
+    - buttonText: '"Hello, how are you?"'
+      actionTrigger:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 11400000}
+            m_TargetAssemblyTypeName: Dialogue.DialogueTreeObject, Assembly-CSharp
+            m_MethodName: AddToState
+            m_Mode: 5
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: b
+              m_BoolArgument: 0
+            m_CallState: 2
+          - m_Target: {fileID: 11400000}
+            m_TargetAssemblyTypeName: Dialogue.DialogueTreeObject, Assembly-CSharp
+            m_MethodName: Continue
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: a
+              m_BoolArgument: 0
+            m_CallState: 2
   - requiredStateKey: aa
     sentences:
-    - 'When you''re ready, hit Record to record your spoken response. '
+    - 'Nice job! This is the correct response to "Hall, was mochtest du?" Hit Continue
+      when you''re ready to speak your response. '
     options:
-    - buttonText: 'I''m ready. '
+    - buttonText: Continue.
       actionTrigger:
         m_PersistentCalls:
           m_Calls:
@@ -70,6 +99,38 @@ MonoBehaviour:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
               m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: openWhisperUI
+              m_BoolArgument: 0
+            m_CallState: 2
+  - requiredStateKey: ab
+    sentences:
+    - Try again! This is not the correct response to "Hallo, was mochtest du?"
+    options:
+    - buttonText: Try again
+      actionTrigger:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 11400000}
+            m_TargetAssemblyTypeName: Dialogue.DialogueTreeObject, Assembly-CSharp
+            m_MethodName: RemoveState
+            m_Mode: 3
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 1
+              m_FloatArgument: 0
+              m_StringArgument: openWhisperUI
+              m_BoolArgument: 0
+            m_CallState: 2
+          - m_Target: {fileID: 11400000}
+            m_TargetAssemblyTypeName: Dialogue.DialogueTreeObject, Assembly-CSharp
+            m_MethodName: EndDialogue
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 1
               m_FloatArgument: 0
               m_StringArgument: openWhisperUI
               m_BoolArgument: 0
