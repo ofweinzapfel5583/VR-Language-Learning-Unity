@@ -5,12 +5,15 @@ using UnityEngine.UI;
 public class GrabAndShowInfo : MonoBehaviour
 {
     public GameObject infoPanel;
+    public AudioClip audioClip;
 
     private XRGrabInteractable grabInteractable;
+    private ObjectAudioHandler audioHandler;
 
     private void Start()
     {
         grabInteractable = GetComponent<XRGrabInteractable>();
+        audioHandler = GetComponent<ObjectAudioHandler>();
 
         // Subscribe to grab and release events
         grabInteractable.onSelectEntered.AddListener(OnGrab);
@@ -25,6 +28,12 @@ public class GrabAndShowInfo : MonoBehaviour
         // Show UI panel and update content
         infoPanel.SetActive(true);
         // Add logic to update UI content based on the grabbed object
+
+        //Play audio clip
+        if (audioHandler != null)
+        {
+            audioHandler.PlayAudio();
+        }
     }
 
     private void OnRelease(XRBaseInteractor interactor)
