@@ -35,6 +35,9 @@ public class EvaluationScript : MonoBehaviour
         }
 
         correctTranslationText.text = "Correct Translation: " + correctTranslation;
+
+        PlayerPrefs.SetFloat("UserScore", similarityPercentage);
+        PlayerPrefs.Save();
     }
 
     private float CalculateSimilarityPercentage(string str1, string str2)
