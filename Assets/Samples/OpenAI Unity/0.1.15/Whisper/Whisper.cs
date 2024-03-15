@@ -58,8 +58,8 @@ namespace OpenAI
 
         private async void EndRecording()
         {
-            message.text = "Transcripting...";
-            message2.text = "Transcripting...";
+            message.text = "...";
+            message2.text = "";
 
 #if !UNITY_WEBGL
             Microphone.End(null);

@@ -51,17 +51,17 @@ namespace OpenAI
 
             var index = PlayerPrefs.GetInt("user-mic-device-index");
 
-//Microphone.devices as an integer will always have to be checked for different devices
+//Microphone.devices as an integer will always have to be checked for different devices, 2 for VR 1 for PC
 
 #if !UNITY_WEBGL
-            clip = Microphone.Start(Microphone.devices[0].ToString(), false, duration, 44100);
+            clip = Microphone.Start(Microphone.devices[2].ToString(), false, duration, 44100);
 #endif
         }
 
         private async void EndRecording()
         {
-            message.text = "Transcripting...";
-            message2.text = "Transcripting...";
+            message.text = "...";
+            message2.text = "...";
 
 #if !UNITY_WEBGL
             Microphone.End(null);

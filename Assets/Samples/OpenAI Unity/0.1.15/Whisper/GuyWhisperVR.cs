@@ -1,0 +1,104 @@
+﻿using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
+namespace OpenAI
+{
+    public class GuyWhisperVR : MonoBehaviour
+    {
+        [SerializeField] private Button recordButton;
+        //[SerializeField] private Image progressBar;
+        [SerializeField] private TMP_Text message;
+        [SerializeField] private TMP_Text message2;
+        //[SerializeField] private Dropdown dropdown;
+
+        private readonly string fileName = "output.wav";
+        private readonly int duration = 5;
+
+        private AudioClip clip;
+        private bool isRecording;
+        private float time;
+        private OpenAIApi openai = new OpenAIApi();
+
+        [SerializeField] private GuyEvaluationScript guyevaluationscript;
+
+        private void Start()
+        {
+#if UNITY_WEBGL && !UNITY_EDITOR
+            dropdown.options.Add(new Dropdown.OptionData("Microphone not supported on WebGL"));
+#else
+            foreach (var device in Microphone.devices)
+            {
+                //dropdown.options.Add(new Dropdown.OptionData(device));
+            }
+            recordButton.onClick.AddListener(StartRecording);
+            //dropdown.onValueChanged.AddListener(ChangeMicrophone);
+
+            var index = PlayerPrefs.GetInt("user-mic-device-index");
+            //dropdown.SetValueWithoutNotify(index);
+#endif
+        }
+
+        private void ChangeMicrophone(int index)
+        {
+            PlayerPrefs.SetInt("user-mic-device-index", index);
+        }
+
+        private void StartRecording()
+        {
+            isRecording = true;
+            recordButton.enabled = false;
+
+            var index = PlayerPrefs.GetInt("user-mic-device-index");
+
+//Microphone.devices as an integer will always have to be checked for different devices, 2 for VR 1 for PC
+
+#if !UNITY_WEBGL
+            clip = Microphone.Start(Microphone.devices[2].ToString(), false, duration, 44100);
+#endif
+        }
+
+        private async void EndRecording()
+        {
+            message.text = "...";
+            message2.text = "...";
+
+#if !UNITY_WEBGL
+            Microphone.End(null);
+#endif
+
+            byte[] data = SaveWav.Save(fileName, clip);
+
+            var req = new CreateAudioTranscriptionsRequest
+            {
+                FileData = new FileData() { Data = data, Name = "audio.wav" },
+                // File = Application.persistentDataPath + "/" + fileName,
+                Model = "whisper-1",
+                Language = "de"
+            };
+            var res = await openai.CreateAudioTranscription(req);
+
+            //progressBar.fillAmount = 0;
+            message.text = res.Text;
+            message2.text = res.Text;
+            guyevaluationscript.CheckAnswer(res.Text);
+            recordButton.enabled = true;
+        }
+
+        private void Update()
+        {
+            if (isRecording)
+            {
+                time += Time.deltaTime;
+                //progressBar.fillAmount = time / duration;
+
+                if (time >= duration)
+                {
+                    time = 0;
+                    isRecording = false;
+                    EndRecording();
+                }
+            }
+        }
+    }
+}

@@ -32,7 +32,7 @@ public class LanguageLearningGame : MonoBehaviour
         }
         else
         {
-            resultText.text = "Fail";
+            resultText.text = "Fail. Review page 31 in your textbook!";
         }
 
         correctTranslationText.text = "Correct Translation: " + correctTranslation;

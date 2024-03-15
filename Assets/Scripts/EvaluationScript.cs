@@ -15,8 +15,8 @@ public class EvaluationScript : MonoBehaviour
     private void Start()
     {
         // Set the English sentence and its correct German translation
-        englishSentenceText.text = "Hello, how are you?";
-        correctTranslation = "Hallo, wie ghet es?";
+        englishSentenceText.text = "Can I have a coffee?";
+        correctTranslation = "Kann ich einen Kaffee haben?";
     }
 
     public void CheckAnswer(string WhisperOutputToBeEvaluated)
@@ -31,10 +31,10 @@ public class EvaluationScript : MonoBehaviour
         }
         else
         {
-            resultText.text = "Fail";
+            resultText.text = "Fail. Review page 31 in your textbook!";
         }
 
-        correctTranslationText.text = "Correct Translation: " + correctTranslation;
+        correctTranslationText.text = correctTranslation;
 
         PlayerPrefs.SetFloat("UserScore", similarityPercentage);
         PlayerPrefs.Save();

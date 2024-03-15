@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -7,11 +8,14 @@ public class TutorialManager : MonoBehaviour
 
     public void ContinueToCafeScene()
     {
-        SceneManager.LoadScene("CafeScene");
+        Debug.Log("Calling cafe scene");
+        // Close the tutorial canvas before loading the cafe scene
+        tutorialCanvas.SetActive(false);
     }
 
     public void GoBackToMainScene()
     {
-        SceneManager.LoadScene("MainScene");
+        Debug.Log("Calling main scene");
+        SceneManager.LoadScene("Main Scene");
     }
 }

@@ -24,9 +24,9 @@ MonoBehaviour:
   DialogueUnits:
   - requiredStateKey: a
     sentences:
-    - '"Hallo, was mochtest du?"'
+    - '"Hallo. Was wirst du haben?"'
     options:
-    - buttonText: '"I would like coffee, please."'
+    - buttonText: '"Can I have a coffee?"'
       actionTrigger:
         m_PersistentCalls:
           m_Calls:
@@ -84,8 +84,8 @@ MonoBehaviour:
             m_CallState: 2
   - requiredStateKey: aa
     sentences:
-    - 'Nice job! This is the correct response to "Hall, was mochtest du?" Hit Continue
-      when you''re ready to speak your response. '
+    - "Correct! \"Was wirst du haben?\" means 'What will you have?\" \nHit Continue
+      when you're ready to speak your response. "
     options:
     - buttonText: Continue.
       actionTrigger:
@@ -105,7 +105,7 @@ MonoBehaviour:
             m_CallState: 2
   - requiredStateKey: ab
     sentences:
-    - Try again! This is not the correct response to "Hallo, was mochtest du?"
+    - Try again! This is not the correct response to "Hallo. Was wirst du haben?"
     options:
     - buttonText: Try again
       actionTrigger:

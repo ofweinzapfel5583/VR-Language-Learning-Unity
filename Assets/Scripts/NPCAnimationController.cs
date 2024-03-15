@@ -4,11 +4,23 @@ using UnityEngine;
 
 public class NPCAnimationController : MonoBehaviour
 {
-    public Animator animator; // Drag the Animator component reference here in the Inspector
+    Animator animator;
 
-    // Method to trigger the animation
-    public void PlayThoughtfulHeadNodAnimation()
+    private void Start()
     {
-        animator.SetTrigger("ThoughtfulHeadNod"); // Assuming "ThoughtfulHeadNod" is the animation trigger name
+        animator = GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKey("g"))
+        {
+            animator.SetBool("isNodding", true);
+        }
+
+        if (!Input.GetKey("g"))
+        {
+            animator.SetBool("isNodding", false);
+        }
     }
 }

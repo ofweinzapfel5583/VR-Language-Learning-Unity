@@ -9,13 +9,20 @@ public class ScoreDisplay : MonoBehaviour
 
     void Start()
     {
-        // Retrieve the score from PlayerPrefs
-        float userScore = PlayerPrefs.GetFloat("UserScore", 0f);
+        // Initially display "--" as the score
+        resultText.text = "--";
 
-        // Determine Pass/Fail based on a threshold (e.g., 60%)
-        string passFailText = (userScore >= 60f) ? "Pass" : "Fail";
+        // Check if the score is available in PlayerPrefs
+        if (PlayerPrefs.HasKey("UserScore"))
+        {
+            // Retrieve the score from PlayerPrefs
+            float userScore = PlayerPrefs.GetFloat("UserScore", 0f);
 
-        // Display Pass/Fail in your UI
-        resultText.text = "Result: " + passFailText;
+            // Determine Pass/Fail based on a threshold (e.g., 60%)
+            string passFailText = (userScore >= 60f) ? "Pass" : "Fail";
+
+            // Display Pass/Fail in your UI along with the actual score
+            resultText.text = passFailText;
+        }
     }
 }
