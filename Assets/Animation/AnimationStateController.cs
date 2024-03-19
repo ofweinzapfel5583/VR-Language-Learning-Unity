@@ -4,24 +4,20 @@ using UnityEngine;
 
 public class AnimationStateController : MonoBehaviour
 {
-
-    Animator animator;
-
-    private void Start()
+    void Start()
     {
-        animator = GetComponent<Animator>();
+
     }
 
-    private void Update()
+    void Update()
     {
-        if (Input.GetKey("g"))
-        {
-            animator.SetBool("isTalking", true);
-        }
 
-        if (!Input.GetKey("g"))
-        {
-            animator.SetBool("isTalking", false);
-        }
+    }
+
+    public void StartTalking(GameObject g)
+    {
+        Animator anim;
+        anim = g.GetComponent<Animator>();
+        anim.Play("Talking");
     }
 }

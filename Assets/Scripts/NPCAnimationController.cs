@@ -4,23 +4,20 @@ using UnityEngine;
 
 public class NPCAnimationController : MonoBehaviour
 {
-    Animator animator;
-
-    private void Start()
+    void Start()
     {
-        animator = GetComponent<Animator>();
+        
     }
 
-    private void Update()
+    void Update()
     {
-        if (Input.GetKey("g"))
-        {
-            animator.SetBool("isNodding", true);
-        }
 
-        if (!Input.GetKey("g"))
-        {
-            animator.SetBool("isNodding", false);
-        }
+    }
+
+    public void StartNodding(GameObject g)
+    {
+        Animator anim;
+        anim = g.GetComponent<Animator>();
+        anim.Play("Nodding");
     }
 }

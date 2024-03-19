@@ -18,4 +18,16 @@ public class TutorialManager : MonoBehaviour
         Debug.Log("Calling main scene");
         SceneManager.LoadScene("Main Scene");
     }
+
+    public void GoBackToCafeScene()
+    {
+        Debug.Log("Calling cafe scene");
+        SceneManager.LoadScene("Cafe Scene");
+    }
+
+    public void GoBackToCafeScene1()
+    {
+        Debug.Log("Calling cafe scene 1");
+        SceneManager.LoadScene("Cafe Scene 1");
+    }
 }
